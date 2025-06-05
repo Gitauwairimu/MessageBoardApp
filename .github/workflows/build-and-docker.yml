@@ -60,6 +60,10 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}  # Make sure you add this PAT secret with push access
           path: k8s-repo
 
+      - name: Show files
+        run: |
+          ls
+
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
 
