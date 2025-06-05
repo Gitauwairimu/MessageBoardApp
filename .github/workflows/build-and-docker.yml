@@ -71,7 +71,7 @@ jobs:
 
       - name: Update image tag in Kustomization
         run: |
-          cd kustomize/overlays/dev
+          cd k8s-repo/kustomize/overlays/dev
           ls
           kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
 
