@@ -49,7 +49,7 @@ jobs:
           # tags: ${{ secrets.DOCKER_USERNAME }}/spring-todo:
           tags: gitauwairimu/messageboard:${{ github.sha }}
   
-  deploy:
+  updateAgroRepo:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
