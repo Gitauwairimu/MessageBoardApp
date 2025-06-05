@@ -22,6 +22,6 @@ public class HomeController {
     public String home(Model model) {
         List<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
-        return "home";
+        return "index";
     }
 }
