@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Message Board</title>
+</head>
+<body>
+    <h1>Message Board</h1>
+
+    <form action="/add" method="post">
+        <input type="text" name="text" placeholder="Type a message..." required>
+        <button type="submit">Post</button>
+    </form>
+
+    <ul>
+        <li th:each="msg : ${messages}">
+            <span th:text="${msg.text}"></span>
+            <small th:text="${#temporals.format(msg.createdAt, 'yyyy-MM-dd HH:mm')}"></small>
+        </li>
+    </ul>
+</body>
+</html>
