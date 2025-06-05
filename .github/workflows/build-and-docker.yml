@@ -48,3 +48,24 @@ jobs:
           push: true
           # tags: ${{ secrets.DOCKER_USERNAME }}/spring-todo:
           tags: gitauwairimu/messageboard:${{ github.sha }}
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Set up Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Patch image tag in Kustomize
+        run: |
+          kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
+        working-directory: kustomize/overlays/dev
+
+      - name: Apply Kustomize manifests
+        run: |
+          kubectl apply -k kustomize/overlays/dev
