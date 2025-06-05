@@ -75,12 +75,12 @@ jobs:
           ls
           kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
 
-      # - name: Commit and push changes
-      #   run: |
-      #     cd k8s-repo
-      #     git config user.name "GitHub Actions"
-      #     git config user.email "actions@github.com"
-      #     git add overlays/dev/kustomization.yaml
-      #     git commit -m "Update image to ${{ github.sha }}"
-      #     git push
+      - name: Commit and push changes
+        run: |
+          cd k8s-repo
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add overlays/dev/kustomization.yaml
+          git commit -m "Update image to ${{ github.sha }}"
+          git push
         
