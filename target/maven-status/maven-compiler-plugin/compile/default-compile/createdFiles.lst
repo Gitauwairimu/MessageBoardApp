@@ -1,0 +1,7 @@
+com/example/webapp/WebAppApplication.class
+com/example/webapp/service/MessageServiceImpl.class
+com/example/webapp/controller/HomeController.class
+com/example/webapp/controller/MessageController.class
+com/example/webapp/model/Message.class
+com/example/webapp/service/MessageService.class
+com/example/webapp/repository/MessageRepository.class

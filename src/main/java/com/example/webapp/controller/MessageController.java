@@ -1,14 +1,29 @@
 // src/main/java/com/example/webapp/controller/MessageController.java
 package com.example.webapp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.webapp.model.Message;
+import com.example.webapp.service.MessageService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/messages")
 public class MessageController {
-    
-    @GetMapping("/messages")
-    public String getMessages() {
-        return "Hello from MessageController!";
+
+    private final MessageService messageService;
+
+    public MessageController(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    @GetMapping
+    public List<Message> getAllMessages() {
+        return messageService.getAllMessages();
+    }
+
+    @PostMapping
+    public Message createMessage(@RequestBody Message message) {
+        return messageService.createMessage(message.getContent());
     }
 }
