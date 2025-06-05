@@ -82,7 +82,7 @@ jobs:
           ls
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add overlays/dev/kustomization.yaml
+          git add kustomize/overlays/dev/kustomization.yaml
           git commit -m "Update image to ${{ github.sha }}"
           git push
         
