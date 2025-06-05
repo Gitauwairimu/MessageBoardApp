@@ -1,4 +1,3 @@
-// src/main/java/com/example/webapp/model/Message.java
 package com.example.webapp.model;
 
 import jakarta.persistence.*;
@@ -9,9 +8,9 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    private String content;
-    
+
+    private String text;  // was 'content'
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -20,8 +19,8 @@ public class Message {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Message(String content) {
-        this.content = content;
+    public Message(String text) {
+        this.text = text;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -30,8 +29,8 @@ public class Message {
         return id;
     }
 
-    public String getContent() {
-        return content;
+    public String getText() {
+        return text;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -42,8 +41,8 @@ public class Message {
         this.id = id;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
