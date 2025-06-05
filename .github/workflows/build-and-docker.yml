@@ -33,7 +33,6 @@ jobs:
 
       - name: Run Tests
         run: mvn test --no-transfer-progress
-        working-directory: MessageBoardApp
 
 
       - name: Set up Docker Buildx
