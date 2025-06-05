@@ -50,6 +50,7 @@ jobs:
           tags: gitauwairimu/messageboard:${{ github.sha }}
   
   deploy:
+    needs: build-and-push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
