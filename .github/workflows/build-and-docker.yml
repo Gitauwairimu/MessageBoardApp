@@ -53,20 +53,27 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout GitOps repo
         uses: actions/checkout@v4
-
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
+        with:
+          repository: gitauwairimu/MessageBoardk8sRepo
+          token: ${{ secrets.GH_TOKEN }}  # Make sure you add this PAT secret with push access
+          path: k8s-repo
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
 
-      - name: Patch image tag in Kustomize
+      - name: Update image tag in Kustomization
         run: |
+          cd k8s-repo/overlays/dev
           kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
-        working-directory: kustomize/overlays/dev
 
-      - name: Apply Kustomize manifests
-        run: |
-          kubectl apply -k kustomize/overlays/dev
+      # - name: Commit and push changes
+      #   run: |
+      #     cd k8s-repo
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
+      #     git add overlays/dev/kustomization.yaml
+      #     git commit -m "Update image to ${{ github.sha }}"
+      #     git push
+        
