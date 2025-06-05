@@ -62,7 +62,9 @@ jobs:
 
       - name: Show files
         run: |
-          ls
+          pwd
+          ls -la
+          tree
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
