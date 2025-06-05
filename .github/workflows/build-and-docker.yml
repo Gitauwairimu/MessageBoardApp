@@ -45,4 +45,5 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/spring-todo:latest
+          # tags: ${{ secrets.DOCKER_USERNAME }}/spring-todo:
+          tags: gitauwairimu/messageboard:latest
