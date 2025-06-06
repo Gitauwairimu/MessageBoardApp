@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - staging
+      - dev
   pull_request:
 
 jobs:
@@ -27,7 +29,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven
 
-
       - name: Build with Maven
         run: mvn clean package --no-transfer-progress
 
@@ -46,26 +47,40 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          # tags: ${{ secrets.DOCKER_USERNAME }}/spring-todo:
           tags: gitauwairimu/messageboard:${{ github.sha }}
-  
-  updateAgroRepo:
+
+  updateKustomizeRepo:
     needs: build-and-push
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout GitOps repo
         uses: actions/checkout@v4
         with:
           repository: gitauwairimu/MessageBoardk8sRepo
-          token: ${{ secrets.GH_TOKEN }}  # Make sure you add this PAT secret with push access
+          token: ${{ secrets.GH_TOKEN }}
           path: k8s-repo
 
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
 
+      - name: Determine overlay path
+        id: overlay
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "OVERLAY=prod" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
+            echo "OVERLAY=staging" >> "$GITHUB_ENV"
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "OVERLAY=dev" >> "$GITHUB_ENV"
+          else
+            echo "Unsupported branch: ${{ github.ref }}"
+            exit 1
+          fi
+
       - name: Update image tag in Kustomization
         run: |
-          cd k8s-repo/kustomize/overlays/dev
+          cd k8s-repo/kustomize/overlays/${{ env.OVERLAY }}
           kustomize edit set image gitauwairimu/messageboard=gitauwairimu/messageboard:${{ github.sha }}
 
       - name: Commit and push changes
@@ -73,7 +88,6 @@ jobs:
           cd k8s-repo
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add kustomize/overlays/dev/kustomization.yaml
-          git commit -m "Update image to ${{ github.sha }}"
+          git add kustomize/overlays/${{ env.OVERLAY }}/kustomization.yaml
+          git commit -m "Update image for ${{ env.OVERLAY }} to ${{ github.sha }}"
           git push
-        
