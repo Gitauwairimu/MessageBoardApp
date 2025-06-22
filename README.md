@@ -2,7 +2,7 @@
 
 # 🚀 GitOps-Based Kubernetes Deployment with Github Actions, Argo CD, Kustomize & Sealed Secrets
 
-# 📬 MessageBoard Kubernetes Deployment
+### 📬
 
 | Environment | Status Badge |
 |-------------|--------------|
