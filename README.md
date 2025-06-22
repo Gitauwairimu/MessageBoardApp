@@ -6,7 +6,7 @@
 
 | Environment | Status Badge |
 |-------------|--------------|
-| **Dev**     | [![Dev Build](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/actions/build-and-docker.yml/badge.svg?branch=dev)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml) |
+| **Dev**     | [![Dev Build](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg?branch=dev)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml) |
 | **Staging** | [![Staging Build](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg?branch=staging)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml) |
 | **Prod**    | [![Prod Build](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg?branch=main)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml) |
 
