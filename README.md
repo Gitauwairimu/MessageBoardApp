@@ -4,7 +4,7 @@
 
 # 📬 MessageBoard Kubernetes Deployment
 
-[![CI](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg?branch=main)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml)
+[![CI](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg?branch=dev)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml)
 
 
 [![Docker Hub](https://img.shields.io/badge/image-gitauwairimu/messageboard-blue?logo=docker)](https://hub.docker.com/r/gitauwairimu/messageboard)
