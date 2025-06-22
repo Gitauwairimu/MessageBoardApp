@@ -8,7 +8,7 @@ on:
       - dev
   pull_request:
 
-jobs:
+s:
   build-and-push:
     runs-on: ubuntu-latest
 
