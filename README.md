@@ -4,7 +4,8 @@
 
 # 📬 MessageBoard Kubernetes Deployment
 
-[![CI](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/docker-build-push.yml)
+[![CI](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml/badge.svg)](https://github.com/gitauwairimu/MessageBoardApp/actions/workflows/build-and-docker.yml)
+
 [![Docker Hub](https://img.shields.io/badge/image-gitauwairimu/messageboard-blue?logo=docker)](https://hub.docker.com/r/gitauwairimu/messageboard)
 [![Argo CD](https://img.shields.io/badge/ArgoCD-Synced-brightgreen?logo=argo&logoColor=white)](https://argocd.example.com/applications/messageboard-dev)
 
