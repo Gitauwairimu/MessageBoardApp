@@ -59,6 +59,11 @@ jobs:
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
+      
+      - name: Show Trivy results (even if failed)
+        if: always()  # Runs regardless of failure
+        run: |
+          cat trivy-results.sarif | jq '.runs[0].results[] | {ruleId, level, message}'
 
       # Upload results to GitHub Security tab
       - name: Upload SARIF results
