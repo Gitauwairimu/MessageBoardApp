@@ -1,5 +1,6 @@
 # FROM eclipse-temurin:17-jdk-jammy
 FROM eclipse-temurin:17.0.11_9-jdk-jammy
+RUN apt update && apt upgrade -y
 WORKDIR /app
 COPY target/webapp-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
