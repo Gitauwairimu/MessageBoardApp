@@ -1,21 +1,440 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Message Board</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndakaini Half Marathon 2025 | Save Green, Save Blue</title>
+    <style>
+        :root {
+            --primary: #1E6F5C;
+            --secondary: #E6F5F1;
+            --accent: #29BB89;
+            --water-blue: #3A7CA5;
+            --text: #2D3748;
+            --light: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(rgba(30, 111, 92, 0.7), rgba(58, 124, 165, 0.7)), 
+                        url('https://cdn.shoplightspeed.com/shops/622630/files/69760926/whatsapp-image-2025-04-14-at-115042-am-1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            background-color: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .logo {
+            height: 100px;
+            width: auto;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .date {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--light);
+            background: rgba(41, 187, 137, 0.8);
+            padding: 8px 25px;
+            border-radius: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--light);
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 2px solid var(--light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: var(--water-blue);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+        }
+        
+        .about {
+            background-color: var(--secondary);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--water-blue));
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .water-drop-icon {
+            color: var(--water-blue);
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: 5px solid var(--light);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .race-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .category {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--accent);
+        }
+        
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .category-icon {
+            font-size: 3.5rem;
+            color: var(--water-blue);
+            margin-bottom: 25px;
+        }
+        
+        .category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--water-blue));
+            color: var(--light);
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            text-align: center;
+            padding: 60px 0 30px;
+            position: relative;
+        }
+        
+        .footer-wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%231E6F5C" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%231E6F5C" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231E6F5C"/></svg>');
+            background-size: cover;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            margin: 0 15px;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .water-fact {
+            font-style: italic;
+            margin: 40px auto;
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            background: rgba(255,255,255,0.1);
+            max-width: 800px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .date {
+                font-size: 1.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .logo {
+                height: 80px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Message Board Secrets</h1>
-
-    <form action="/add" method="post">
-        <input type="text" name="text" placeholder="Type a message..." required>
-        <button type="submit">Post</button>
-    </form>
-
-    <ul>
-        <li th:each="msg : ${messages}">
-            <span th:text="${msg.text}"></span>
-            <small th:text="${#temporals.format(msg.createdAt, 'yyyy-MM-dd HH:mm')}"></small>
-        </li>
-    </ul>
+    <header>
+        <div class="logo-container">
+            <img src="https://www.facebook.com/photo/?fbid=122097258680841127&set=a.122097253718841127" alt="Ndakaini Marathon Logo" class="logo">
+        </div>
+        <h1>Ndakaini Half Marathon 2025</h1>
+        <div class="tagline">Save Green, Save Blue</div>
+        <div class="date">September 6, 2025</div>
+        <p>Run for Water Conservation at Ndakaini Dam - Nairobi's Primary Water Source</p>
+        <a href="https://apps.little.africa/events/ndakaini-mazingira-cross-country-01-event-2025" class="cta-button">Register Now</a>
+    </header>
+    
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Our Conservation Mission</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><i class="fas fa-water water-drop-icon"></i> The Ndakaini Dam provides over 80% of Nairobi's water supply. This marathon directly supports conservation efforts to protect this vital resource for current and future generations.</p>
+                    
+                    <p><i class="fas fa-tree water-drop-icon"></i> Every registration contributes to tree planting initiatives in the Aberdare watershed, helping to maintain the natural water cycle and prevent soil erosion that silts our reservoirs.</p>
+                    
+                    <p><i class="fas fa-tint water-drop-icon"></i> Your participation helps fund community education programs on water conservation, sustainable farming practices, and alternative energy sources to reduce pressure on our forests.</p>
+                    
+                    <div class="water-fact">
+                        "For every kilometer you run, we pledge to protect 1,000 liters of clean water through our conservation programs."
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://cdn.shoplightspeed.com/shops/622630/files/69760926/whatsapp-image-2025-04-14-at-115042-am-1.jpg" alt="Ndakaini Dam Conservation Area">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--light);">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years of Conservation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2M+</div>
+                    <div class="stat-label">Trees Planted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-label">Liters Protected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Communities Engaged</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">Race Categories</h2>
+        <div class="race-categories">
+            <div class="category">
+                <div class="category-icon"><i class="fas fa-mountain"></i></div>
+                <h3>Half Marathon (21km)</h3>
+                <p>Challenge yourself on our flagship 21km course through Ndakaini's beautiful terrain. Each registration protects 21,000 liters of water.</p>
+            </div>
+            <div class="category">
+                <div class="category-icon"><i class="fas fa-running"></i></div>
+                <h3>10km Run</h3>
+                <p>The perfect balance of challenge and enjoyment. Your participation helps conserve 10,000 liters of Nairobi's water supply.</p>
+            </div>
+            <div class="category">
+                <div class="category-icon"><i class="fas fa-users"></i></div>
+                <h3>5km Green Walk</h3>
+                <p>Family-friendly walk through stunning landscapes. Each participant funds the planting of 5 native tree seedlings.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container" style="text-align: center; padding: 100px 20px;">
+        <h2 class="section-title">Every Step Makes a Difference</h2>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px;">By joining the Ndakaini Half Marathon, you're not just running a race - you're helping safeguard Nairobi's water future. Our unique "Run for Water" initiative converts every kilometer you run into tangible conservation action.</p>
+        <a href="https://apps.little.africa/events/ndakaini-mazingira-cross-country-01-event-2025" class="cta-button">Join the Conservation Movement</a>
+    </section>
+    
+    <footer>
+        <div class="footer-wave"></div>
+        <div class="container">
+            <div class="contact-info">
+                <p>© 2025 Ndakaini Mazingira Half Marathon. All Rights Reserved.</p>
+                <p>Email: <a href="mailto:ndakainimazingirahalfmarathon@gmail.com">ndakainimazingirahalfmarathon@gmail.com</a></p>
+                <p>Phone: +254 723 644 899</p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/people/Ndakaini-Mazingira-Half-Marathon/61575233819262/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.instagram.com/ndakainimazingirahalfmarathon/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
